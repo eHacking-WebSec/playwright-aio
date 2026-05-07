@@ -16,7 +16,9 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     git \
     curl \
     thunar \
+    tini \
     tzdata \
+    x11-utils \
     xclip \
     xsel \
     && rm -rf /var/lib/apt/lists/*
@@ -63,5 +65,5 @@ ENV DISPLAY=:99
 ENV RESOLUTION=1920x1080x24
 ENV VNC_RESOLUTION=1920x1080
 
-# Start services
-ENTRYPOINT ["/docker-entrypoint.sh"]
+# Start services (tini as PID 1 for proper signal handling and zombie reaping)
+ENTRYPOINT ["/usr/bin/tini", "--", "/docker-entrypoint.sh"]
