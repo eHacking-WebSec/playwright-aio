@@ -3,27 +3,36 @@
 CONTAINER_NAME="playwright-aio"
 IMAGE_NAME="playwright-aio:local"
 
-echo "Building and starting Playwright AIO Runner..."
+if command -v podman >/dev/null 2>&1; then
+    RUNTIME=podman
+elif command -v docker >/dev/null 2>&1; then
+    RUNTIME=docker
+else
+    echo "Error: neither podman nor docker is installed."
+    exit 1
+fi
+
+echo "Building and starting Playwright AIO Runner (using $RUNTIME)..."
 
 # Stop and remove existing container if running
-if docker ps -a --format '{{.Names}}' | grep -q "^${CONTAINER_NAME}$"; then
+if $RUNTIME ps -a --format '{{.Names}}' | grep -q "^${CONTAINER_NAME}$"; then
     echo "Stopping and removing existing container..."
-    docker stop $CONTAINER_NAME 2>/dev/null
-    docker rm $CONTAINER_NAME 2>/dev/null
+    $RUNTIME stop $CONTAINER_NAME 2>/dev/null
+    $RUNTIME rm $CONTAINER_NAME 2>/dev/null
 fi
 
 # Build the image
-echo "Building Docker image..."
-docker build -t $IMAGE_NAME .
+echo "Building image..."
+$RUNTIME build -t $IMAGE_NAME .
 
 if [ $? -ne 0 ]; then
-    echo "Docker build failed!"
+    echo "Build failed!"
     exit 1
 fi
 
 # Run the container
 echo "Starting container..."
-docker run -d \
+$RUNTIME run -d \
     --name $CONTAINER_NAME \
     -p 8080:8080 \
     -p 6080:6080 \
