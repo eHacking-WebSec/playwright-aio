@@ -8,13 +8,17 @@ ENV TZ=UTC
 RUN apt-get update && apt-get install -y --no-install-recommends \
     x11vnc \
     xvfb \
+    feh \
     fluxbox \
     websockify \
     net-tools \
     python3-pip \
     git \
     curl \
+    thunar \
     tzdata \
+    xclip \
+    xsel \
     && rm -rf /var/lib/apt/lists/*
 
 # Install noVNC
