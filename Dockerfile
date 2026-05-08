@@ -4,8 +4,8 @@ FROM mcr.microsoft.com/playwright/python:v${PLAYWRIGHT_VERSION}-jammy
 # Build-time overridable versions (re-declare PLAYWRIGHT_VERSION so it is
 # visible in this build stage; the others get their defaults here)
 ARG PLAYWRIGHT_VERSION
-ARG NOVNC_VERSION=v1.5.0
-ARG WEBSOCKIFY_VERSION=v0.12.0
+ARG NOVNC_VERSION=v1.7.0
+ARG WEBSOCKIFY_VERSION=v0.13.0
 
 LABEL org.opencontainers.image.source="https://github.com/eHacking-WebSec/playwright-aio" \
       org.opencontainers.image.title="Playwright AIO Runner" \
