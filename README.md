@@ -1,5 +1,3 @@
-This is a Fork of https://github.com/lonetis/playwright-aio with small fixes and improvements (e.g. working copy & paste).
-
 # Playwright AIO Runner
 
 All-in-one Playwright Python runner with a web-based IDE, terminal, and browser viewer.
