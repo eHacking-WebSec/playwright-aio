@@ -1,3 +1,5 @@
+This is a Fork of https://github.com/lonetis/playwright-aio with small fixes and improvements (e.g. working copy & paste).
+
 # Playwright AIO Runner
 
 All-in-one Playwright Python runner with a web-based IDE, terminal, and browser viewer.
@@ -9,12 +11,13 @@ All-in-one Playwright Python runner with a web-based IDE, terminal, and browser 
 Run from GitHub Container Registry:
 
 ```bash
-docker run -d --name playwright-aio -p 8080:8080 -p 6080:6080 --shm-size=2gb ghcr.io/lonetis/playwright-aio:latest
+docker run -d --name playwright-aio -p 8080:8080 -p 6080:6080 --shm-size=2gb ghcr.io/ehacking-websec/playwright-aio:latest
 ```
 
 **Access:** http://localhost:8080
 
 **Stop:**
+
 ```bash
 docker stop playwright-aio && docker rm playwright-aio
 ```
@@ -24,11 +27,13 @@ docker stop playwright-aio && docker rm playwright-aio
 ## Local Development
 
 Start (builds and runs):
+
 ```bash
 ./start.sh
 ```
 
 Stop:
+
 ```bash
 ./stop.sh
 ```

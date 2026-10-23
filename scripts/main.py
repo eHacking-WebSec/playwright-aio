@@ -5,4 +5,6 @@ with sync_playwright() as p:
     page = browser.new_page()
     page.goto("https://playwright.dev")
     print(page.title())
+    print(page.url)
+    page.pause() # open inspector
     browser.close()
